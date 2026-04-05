@@ -60,8 +60,8 @@ echo.
 
 REM Copy resources
 echo Copying game resources...
-if exist "Maps" (
-    xcopy /E /I /Y "Maps" "%PUBLISH_DIR%\Maps\"
+if exist "Assets\Maps" (
+    xcopy /E /I /Y "Assets\Maps" "%PUBLISH_DIR%\Assets\Maps\"
 )
 if exist "Configs" (
     xcopy /E /I /Y "Configs" "%PUBLISH_DIR%\Configs\"
