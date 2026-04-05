@@ -21,6 +21,7 @@ namespace R6Planner.Data
                 {
                     new FloorInfo { Label = "1F", ImagePath = "Border/1F.png" },
                     new FloorInfo { Label = "2F", ImagePath = "Border/2F.png" },
+                    new FloorInfo { Label = "Roof", ImagePath = "Border/Roof.png" },
                 },
                 DefaultCameras = new()
                 {
@@ -41,66 +42,6 @@ namespace R6Planner.Data
                 {
                 }
             },
-
-            new MapInfo
-            {
-                Name = "Clubhouse",
-                Floors = new()
-                {
-                    new FloorInfo { Label = "B",  ImagePath = "Clubhouse/B.png"  },
-                    new FloorInfo { Label = "1F", ImagePath = "Clubhouse/1F.png" },
-                    new FloorInfo { Label = "2F", ImagePath = "Clubhouse/2F.png" },
-                    new FloorInfo { Label = "Roof", ImagePath = "Clubhouse/Roof.png" },
-                },
-                DefaultCameras = new()
-                {
-                }
-            },
-
-            new MapInfo
-            {
-                Name = "Consulate",
-                Floors = new()
-                {
-                    new FloorInfo { Label = "B",  ImagePath = "Consulate/B.png"  },
-                    new FloorInfo { Label = "1F", ImagePath = "Consulate/1F.png" },
-                    new FloorInfo { Label = "2F", ImagePath = "Consulate/2F.png" },
-                },
-                DefaultCameras = new()
-                {
-                }
-            },
-
-            new MapInfo
-            {
-                Name = "Kafe Dostoyevsky",
-                Floors = new()
-                {
-                    new FloorInfo { Label = "1F", ImagePath = "Kafe/1F.png" },
-                    new FloorInfo { Label = "2F", ImagePath = "Kafe/2F.png" },
-                    new FloorInfo { Label = "3F", ImagePath = "Kafe/3F.png" },
-                },
-                DefaultCameras = new()
-                {
-                }
-            },
-
-            new MapInfo
-            {
-                Name = "Oregon",
-                Floors = new()
-                {
-                    new FloorInfo { Label = "B",  ImagePath = "Oregon/B.png"  },
-                    new FloorInfo { Label = "1F", ImagePath = "Oregon/1F.png" },
-                    new FloorInfo { Label = "2F", ImagePath = "Oregon/2F.png" },
-                    new FloorInfo { Label = "3F", ImagePath = "Oregon/3F.png" },
-                    new FloorInfo { Label = "Roof", ImagePath = "Oregon/Roof.png" },
-                },
-                DefaultCameras = new()
-                {
-                }
-            },
-
             new MapInfo
             {
                 Name = "Chalet",
@@ -117,6 +58,156 @@ namespace R6Planner.Data
                     new DefaultCamera { Name = "2F Bedroom Hallway", FloorIndex = 2, NormX = 0.50, NormY = 0.50, AngleDeg = 90, FovHalfDeg = 38, RangeNorm = 0.14 },
                     new DefaultCamera { Name = "2F Library Stairs", FloorIndex = 2, NormX = 0.50, NormY = 0.50, AngleDeg = 90, FovHalfDeg = 38, RangeNorm = 0.14 },
                     new DefaultCamera { Name = "1/2F Fireplace Hallway", FloorIndex = 2, NormX = 0.50, NormY = 0.50, AngleDeg = 90, FovHalfDeg = 38, RangeNorm = 0.14 },
+                }
+            },
+            new MapInfo
+            {
+                Name = "Clubhouse",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "B",  ImagePath = "Clubhouse/B.png"  },
+                    new FloorInfo { Label = "1F", ImagePath = "Clubhouse/1F.png" },
+                    new FloorInfo { Label = "2F", ImagePath = "Clubhouse/2F.png" },
+                    new FloorInfo { Label = "Roof", ImagePath = "Clubhouse/Roof.png" },
+                },
+                DefaultCameras = new()
+                {
+                }
+            },
+            new MapInfo
+            {
+                Name = "Coastline",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "1F", ImagePath = "Coastline/1F.jpg" },
+                    new FloorInfo { Label = "2F", ImagePath = "Coastline/2F.jpg" },
+                    new FloorInfo { Label = "Roof", ImagePath = "Coastline/Roof.jpg" },
+                },
+                DefaultCameras = new()
+                {
+                }
+            },
+            new MapInfo
+            {
+                Name = "Consulate",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "B",  ImagePath = "Consulate/B.png"  },
+                    new FloorInfo { Label = "1F", ImagePath = "Consulate/1F.png" },
+                    new FloorInfo { Label = "2F", ImagePath = "Consulate/2F.png" },
+                    new FloorInfo { Label = "Roof", ImagePath = "Consulate/Roof.png" },
+                },
+                DefaultCameras = new()
+                {
+                }
+            },
+            new MapInfo
+            {
+                Name = "Emerald Plains",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "1F", ImagePath = "Emerald/1F.jpg" },
+                    new FloorInfo { Label = "2F", ImagePath = "Emerald/2F.jpg" },
+                    new FloorInfo { Label = "Roof", ImagePath = "Emerald/Roof.jpg" },
+                },
+                DefaultCameras = new()
+                {
+                } 
+            },
+            new MapInfo
+            {
+                Name = "Favela",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "B",  ImagePath = "Favela/B.png"  },
+                    new FloorInfo { Label = "1F", ImagePath = "Favela/1F.png" },
+                    new FloorInfo { Label = "2F", ImagePath = "Favela/2F.png" },
+                    new FloorInfo { Label = "3F", ImagePath = "Favela/3F.png" },
+                    new FloorInfo { Label = "Roof", ImagePath = "Favela/Roof.png" },
+                },
+                DefaultCameras = new()
+                {
+                }
+            },
+            new MapInfo
+            {
+                Name = "House",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "B",  ImagePath = "House/B.jpg"  },
+                    new FloorInfo { Label = "1F", ImagePath = "House/1F.jpg" },
+                    new FloorInfo { Label = "2F", ImagePath = "House/2F.jpg" },
+                    new FloorInfo { Label = "Roof", ImagePath = "House/Roof.jpg" },
+                }
+            },
+            new MapInfo
+            {
+                Name = "Kafe Dostoyevsky",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "1F", ImagePath = "Kafe/1F.png" },
+                    new FloorInfo { Label = "2F", ImagePath = "Kafe/2F.png" },
+                    new FloorInfo { Label = "3F", ImagePath = "Kafe/3F.png" },
+                },
+                DefaultCameras = new()
+                {
+                }
+            },
+            new MapInfo
+            {
+                Name = "Nighthaven Labs",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "B",  ImagePath = "Nighthaven/B.jpg"  },
+                    new FloorInfo { Label = "1F", ImagePath = "Nighthaven/1F.jpg" },
+                    new FloorInfo { Label = "2F", ImagePath = "Nighthaven/2F.jpg" },
+                    new FloorInfo { Label = "Roof", ImagePath = "Nighthaven/Roof.jpg" },
+                },
+                DefaultCameras = new()
+                {
+                }
+            },
+            new MapInfo
+            {
+                Name = "Oregon",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "B",  ImagePath = "Oregon/B.png"  },
+                    new FloorInfo { Label = "1F", ImagePath = "Oregon/1F.png" },
+                    new FloorInfo { Label = "2F", ImagePath = "Oregon/2F.png" },
+                    new FloorInfo { Label = "3F", ImagePath = "Oregon/3F.png" },
+                    new FloorInfo { Label = "Roof", ImagePath = "Oregon/Roof.png" },
+                },
+                DefaultCameras = new()
+                {
+                }
+            },
+            new MapInfo
+            {
+                Name = "Presedential Plane",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "1F", ImagePath = "Plane/1F.jpg" },
+                    new FloorInfo { Label = "2F", ImagePath = "Plane/2F.jpg" },
+                    new FloorInfo { Label = "3F", ImagePath = "Plane/3F.jpg" },
+                    new FloorInfo { Label = "Roof", ImagePath = "Plane/Roof.jpg" },
+                },
+                DefaultCameras = new()
+                {
+                }
+            },
+            new MapInfo
+            {
+                Name = "Stadium Bravo",
+                Floors = new()
+                {
+                    new FloorInfo { Label = "B",  ImagePath = "Bravo/B.jpg"  },
+                    new FloorInfo { Label = "1F", ImagePath = "Bravo/1F.jpg" },
+                    new FloorInfo { Label = "2F", ImagePath = "Bravo/2F.jpg" },
+                    new FloorInfo { Label = "Roof", ImagePath = "Bravo/Roof.jpg" },
+                },
+                DefaultCameras = new()
+                {
                 }
             }
         };

@@ -1,74 +1,10 @@
 {
   "Border": {
-    "Cameras": {
-      "Cam A – East Stairs": {
-        "Name": "Cam A – East Stairs",
-        "FloorIndex": 0,
-        "NormX": 0.72,
-        "NormY": 0.31,
-        "AngleDeg": 200.0,
-        "FovHalfDeg": 35.0,
-        "RangeNorm": 0.14
-      },
-      "Cam B – Armory": {
-        "Name": "Cam B – Armory",
-        "FloorIndex": 0,
-        "NormX": 0.41,
-        "NormY": 0.58,
-        "AngleDeg": 90.0,
-        "FovHalfDeg": 35.0,
-        "RangeNorm": 0.12
-      },
-      "Cam C – 2F Hallway": {
-        "Name": "Cam C – 2F Hallway",
-        "FloorIndex": 1,
-        "NormX": 0.55,
-        "NormY": 0.22,
-        "AngleDeg": 270.0,
-        "FovHalfDeg": 40.0,
-        "RangeNorm": 0.13
-      },
-      "Cam D – Roof Hatch": {
-        "Name": "Cam D – Roof Hatch",
-        "FloorIndex": 1,
-        "NormX": 0.3,
-        "NormY": 0.7,
-        "AngleDeg": 135.0,
-        "FovHalfDeg": 30.0,
-        "RangeNorm": 0.1
-      }
-    },
+    "Cameras": {},
     "Spawns": []
   },
   "Bank": {
     "Cameras": {
-      "Cam 1 – Lobby": {
-        "Name": "Cam 1 – Lobby",
-        "FloorIndex": 1,
-        "NormX": 0.0,
-        "NormY": 1.0,
-        "AngleDeg": 180.0,
-        "FovHalfDeg": 35.0,
-        "RangeNorm": 0.13
-      },
-      "Cam 2 – Vault": {
-        "Name": "Cam 2 – Vault",
-        "FloorIndex": 0,
-        "NormX": 0.0,
-        "NormY": 1.0,
-        "AngleDeg": 90.0,
-        "FovHalfDeg": 40.0,
-        "RangeNorm": 0.12
-      },
-      "Cam 3 – CEO Office": {
-        "Name": "Cam 3 – CEO Office",
-        "FloorIndex": 2,
-        "NormX": 0.0,
-        "NormY": 1.0,
-        "AngleDeg": 315.0,
-        "FovHalfDeg": 35.0,
-        "RangeNorm": 0.11
-      },
       "Spawn Garage Ramp": {
         "Name": "Spawn Garage Ramp",
         "FloorIndex": 0,

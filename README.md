@@ -5,7 +5,7 @@ A planning tool for Rainbow Six Siege. Draw strategies, mark gadgets, and plan y
 
 ## Features
 
-- Floor support (Bank, Clubhouse, Oregon, Chalet)
+- Floors support (Bank, Border, Stadium Bravo, Chalet, Clubhouse, Coastline, Consulate, Emerald Plains, Favela, House, Nighthaven Labs, Oregon, Presidential Plane)
 - Place attacker/defender tokens, drones, breach points, and objectives
 - 60+ gadget types (Mute jammers, Kapkan traps, Bandit batteries, etc.)
 - Draw lines of sight, arrows, rectangles, and freehand annotations

@@ -39,6 +39,46 @@
             </Setter>
         </Style>
 
+        <!-- Dark scrollbar style -->
+        <Style x:Key="DarkScrollBar" TargetType="ScrollBar">
+            <Setter Property="Background" Value="#0D1117"/>
+            <Setter Property="Foreground" Value="#30363D"/>
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" CornerRadius="6"/>
+                            <Track x:Name="PART_Track" IsDirectionReversed="True">
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Style>
+                                            <Style TargetType="Thumb">
+                                                <Setter Property="Background" Value="#30363D"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Thumb">
+                                                            <Border Background="{TemplateBinding Background}" 
+                                                                    CornerRadius="6" Margin="2"/>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#58A6FF"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Thumb.Style>
+                                    </Thumb>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!-- Instant tooltip style matching camera labels -->
         <Style x:Key="InstantTooltip" TargetType="ToolTip">
             <Setter Property="Background" Value="#CC000000"/>
@@ -170,26 +210,43 @@
         <!-- ── Main layout ────────────────────────────────────────────────── -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>   <!-- left panel -->
-                <ColumnDefinition Width="*"/>     <!-- canvas -->
-                <ColumnDefinition Width="200"/>   <!-- right panel -->
+                <ColumnDefinition Width="200" MinWidth="150" MaxWidth="400"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" MinWidth="400"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="200" MinWidth="150" MaxWidth="400"/>
             </Grid.ColumnDefinitions>
 
             <!-- ── Left panel: maps + floors ──────────────────────────────── -->
-            <DockPanel Grid.Column="0" Background="#0D1117"
-                       LastChildFill="True">
+            <Grid Grid.Column="0" Background="#0D1117">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="200" MinHeight="100" MaxHeight="400"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
                 <!-- Header -->
-                <Border DockPanel.Dock="Top" Background="#161B22"
+                <Border Grid.Row="0" Background="#161B22"
                         BorderBrush="#21262D" BorderThickness="0,0,1,1" Padding="8,6">
                     <TextBlock Text="MAPS" Style="{StaticResource SectionLabel}" Margin="0"/>
                 </Border>
 
                 <!-- Map list -->
-                <ListBox x:Name="LbMaps" DockPanel.Dock="Top" Height="200"
+                <ListBox x:Name="LbMaps" Grid.Row="1"
                          Background="#0D1117" BorderThickness="0,0,1,0"
                          BorderBrush="#21262D"
                          Foreground="#C9D1D9" FontFamily="Consolas" FontSize="12"
-                         SelectionChanged="LbMaps_SelectionChanged">
+                         SelectionChanged="LbMaps_SelectionChanged"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.Resources>
+                        <Style TargetType="ScrollBar" BasedOn="{StaticResource DarkScrollBar}"/>
+                    </ListBox.Resources>
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="Padding"          Value="10,5"/>
@@ -207,44 +264,49 @@
                         </Style>
                     </ListBox.ItemContainerStyle>
                 </ListBox>
+                
+                <GridSplitter Grid.Row="2" Height="3" HorizontalAlignment="Stretch"
+                              Background="#21262D" BorderBrush="#30363D" BorderThickness="0,1,0,0"
+                              Cursor="SizeNS"/>
 
                 <!-- Floor selector -->
-                <Border DockPanel.Dock="Top" Background="#161B22"
+                <Border Grid.Row="3" Background="#161B22"
                         BorderBrush="#21262D" BorderThickness="0,1,1,1" Padding="8,6">
                     <TextBlock Text="FLOORS" Style="{StaticResource SectionLabel}" Margin="0"/>
                 </Border>
 
-                <ScrollViewer DockPanel.Dock="Top" MaxHeight="150"
+                <ScrollViewer Grid.Row="4" MaxHeight="150"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Disabled">
+                    <ScrollViewer.Resources>
+                        <Style TargetType="ScrollBar" BasedOn="{StaticResource DarkScrollBar}"/>
+                    </ScrollViewer.Resources>
                     <StackPanel x:Name="SpFloors" Background="#0D1117"
                                 Margin="0,4"/>
                 </ScrollViewer>
 
                 <!-- Visibility toggles -->
-                <Border DockPanel.Dock="Top" Background="#161B22"
+                <Border Grid.Row="5" Background="#161B22"
                         BorderBrush="#21262D" BorderThickness="0,1,1,1" Padding="8,6">
                     <TextBlock Text="VISIBILITY" Style="{StaticResource SectionLabel}" Margin="0"/>
                 </Border>
 
-                <StackPanel DockPanel.Dock="Top" Margin="8,4" Background="#0D1117">
+                <StackPanel Grid.Row="6" Margin="8,4" Background="#0D1117">
                     <CheckBox x:Name="CbCams" Content="Default Cameras" Margin="0,3"
                               Foreground="#C9D1D9" FontFamily="Consolas" FontSize="11"
                               IsChecked="True" Checked="CbCams_Changed" Unchecked="CbCams_Changed"/>
                     <CheckBox x:Name="CbLoS" Content="Lines of Sight" Margin="0,3"
                               Foreground="#C9D1D9" FontFamily="Consolas" FontSize="11"
                               IsChecked="True" Checked="CbLoS_Changed" Unchecked="CbLoS_Changed"/>
-                </StackPanel>
+                    
+                    <!-- Save/Load -->
+                    <Border Background="#161B22" Margin="-8,8,-8,0"
+                            BorderBrush="#21262D" BorderThickness="0,1,0,1" Padding="8,6">
+                        <TextBlock Text="FILE" Style="{StaticResource SectionLabel}" Margin="0"/>
+                    </Border>
 
-                <!-- Save/Load -->
-                <Border DockPanel.Dock="Top" Background="#161B22"
-                        BorderBrush="#21262D" BorderThickness="0,1,1,1" Padding="8,6">
-                    <TextBlock Text="FILE" Style="{StaticResource SectionLabel}" Margin="0"/>
-                </Border>
-
-                <StackPanel DockPanel.Dock="Top" Margin="8,4" Background="#0D1117">
                     <Button Style="{StaticResource DarkBtn}" Content="💾  Save Plan"
-                            Margin="0,3" Click="SaveBtn_Click"/>
+                            Margin="0,8,0,3" Click="SaveBtn_Click"/>
                     <Button Style="{StaticResource DarkBtn}" Content="📂  Load Plan"
                             Margin="0,3" Click="LoadBtn_Click"/>
                     <Button Style="{StaticResource DarkBtn}" Content="🗑  Clear All"
@@ -252,11 +314,16 @@
                             Background="#3B1A1A"/>
                 </StackPanel>
 
-                <Border Background="#0D1117"/>
-            </DockPanel>
+                <Border Grid.Row="7" Background="#0D1117"/>
+            </Grid>
+
+            <!-- GridSplitter between left panel and canvas -->
+            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Center"
+                          Background="#21262D" BorderBrush="#30363D" BorderThickness="1,0"
+                          Cursor="SizeWE"/>
 
             <!-- ── Canvas area ────────────────────────────────────────────── -->
-            <Grid Grid.Column="1" Background="#010409">
+            <Grid Grid.Column="2" Background="#010409">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
@@ -276,16 +343,39 @@
                 </Border>
             </Grid>
 
+            <!-- GridSplitter between canvas and right panel -->
+            <GridSplitter Grid.Column="3" Width="3" HorizontalAlignment="Center"
+                          Background="#21262D" BorderBrush="#30363D" BorderThickness="1,0"
+                          Cursor="SizeWE"/>
+
             <!-- ── Right panel: tools ─────────────────────────────────────── -->
-            <DockPanel Grid.Column="2" Background="#0D1117"
-                       LastChildFill="True">
+            <Grid Grid.Column="4" Background="#0D1117">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="160" MinHeight="80" MaxHeight="400"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <!-- Tokens -->
-                <Border DockPanel.Dock="Top" Background="#161B22"
+                <Border Grid.Row="0" Background="#161B22"
                         BorderBrush="#21262D" BorderThickness="1,0,0,1" Padding="8,6">
                     <TextBlock Text="PLACE" Style="{StaticResource SectionLabel}" Margin="0"/>
                 </Border>
 
-                <UniformGrid DockPanel.Dock="Top" Columns="2" Margin="6,4">
+                <UniformGrid Grid.Row="1" Columns="2" Margin="6,4">
                     <ToggleButton x:Name="TbAttacker"  Style="{StaticResource ToolBtn}"
                                   Content="⚔ Attacker"  Margin="2"
                                   Checked="Tool_Checked" Tag="PlaceAttacker"/>
@@ -307,7 +397,7 @@
                 </UniformGrid>
 
                 <!-- Gadget selector display -->
-                <Border DockPanel.Dock="Top" Margin="6,0,6,4" Background="#161B22" 
+                <Border Grid.Row="2" Margin="6,0,6,4" Background="#161B22" 
                         BorderBrush="#21262D" BorderThickness="1" CornerRadius="3" Padding="4"
                         x:Name="GadgetDisplay" Cursor="Hand"
                         MouseLeftButtonDown="GadgetDisplay_Click">
@@ -317,7 +407,7 @@
                 </Border>
 
                 <!-- Operator name -->
-                <Border DockPanel.Dock="Top" Margin="6,0,6,4">
+                <Border Grid.Row="3" Margin="6,0,6,4">
                     <TextBox x:Name="TbOperator" Background="#161B22" Foreground="#C9D1D9"
                              BorderBrush="#21262D" FontFamily="Consolas" FontSize="11"
                              Padding="4" CaretBrush="White"
@@ -335,12 +425,12 @@
                 </Border>
 
                 <!-- Draw -->
-                <Border DockPanel.Dock="Top" Background="#161B22"
+                <Border Grid.Row="4" Background="#161B22"
                         BorderBrush="#21262D" BorderThickness="1,1,0,1" Padding="8,6">
                     <TextBlock Text="DRAW" Style="{StaticResource SectionLabel}" Margin="0"/>
                 </Border>
 
-                <UniformGrid DockPanel.Dock="Top" Columns="2" Margin="6,4">
+                <UniformGrid Grid.Row="5" Columns="2" Margin="6,4">
                     <ToggleButton x:Name="TbSelect"   Style="{StaticResource ToolBtn}"
                                   Content="↖ Select"   Margin="2"
                                   Checked="Tool_Checked" Tag="Select" IsChecked="True"/>
@@ -368,12 +458,12 @@
                 </UniformGrid>
 
                 <!-- Camera -->
-                <Border DockPanel.Dock="Top" Background="#161B22"
+                <Border Grid.Row="6" Background="#161B22"
                         BorderBrush="#21262D" BorderThickness="1,1,0,1" Padding="8,6">
                     <TextBlock Text="CAMERA" Style="{StaticResource SectionLabel}" Margin="0"/>
                 </Border>
 
-                <UniformGrid DockPanel.Dock="Top" Columns="1" Margin="6,4">
+                <UniformGrid Grid.Row="7" Columns="1" Margin="6,4">
                     <ToggleButton x:Name="TbCamera"   Style="{StaticResource ToolBtn}"
                                   Content="📹 Edit Cam" Margin="2"
                                   Checked="Tool_Checked" Tag="EditCamera"
@@ -385,12 +475,12 @@
                 </UniformGrid>
 
                 <!-- Color picker -->
-                <Border DockPanel.Dock="Top" Background="#161B22"
+                <Border Grid.Row="8" Background="#161B22"
                         BorderBrush="#21262D" BorderThickness="1,1,0,1" Padding="8,6">
                     <TextBlock Text="COLOR" Style="{StaticResource SectionLabel}" Margin="0"/>
                 </Border>
 
-                <UniformGrid DockPanel.Dock="Top" Columns="5" Margin="6,4">
+                <UniformGrid Grid.Row="9" Columns="5" Margin="6,4">
                     <Button Style="{StaticResource ColorSwatchBtn}" Tag="#FFD700" Click="ColorBtn_Click" Margin="2" Height="24" Background="#FFD700"/>
                     <Button Style="{StaticResource ColorSwatchBtn}" Tag="#E63946" Click="ColorBtn_Click" Margin="2" Height="24" Background="#E63946"/>
                     <Button Style="{StaticResource ColorSwatchBtn}" Tag="#2196F3" Click="ColorBtn_Click" Margin="2" Height="24" Background="#2196F3"/>
@@ -404,61 +494,68 @@
                 </UniformGrid>
 
                 <!-- Active color swatch -->
-                <Border DockPanel.Dock="Top" Margin="8,2,8,6" Height="20" CornerRadius="3"
+                <Border Grid.Row="10" Margin="8,2,8,6" Height="20" CornerRadius="3"
                         x:Name="ActiveColorSwatch" Background="#FFD700"/>
 
                 <!-- Legend -->
-                <Border DockPanel.Dock="Top" Background="#161B22"
+                <Border Grid.Row="11" Background="#161B22"
                         BorderBrush="#21262D" BorderThickness="1,1,0,1" Padding="8,6">
                     <TextBlock Text="LEGEND" Style="{StaticResource SectionLabel}" Margin="0"/>
                 </Border>
 
-                <ScrollViewer DockPanel.Dock="Top" Margin="6,4" MaxHeight="160"
-                              VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,2">
-                            <Ellipse Width="12" Height="12" Fill="#E63946" Margin="0,0,6,0"/>
-                            <TextBlock Text="Attacker"  Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
+                <ScrollViewer Grid.Row="12" Margin="6,4"
+                                  VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer.Resources>
+                            <Style TargetType="ScrollBar" BasedOn="{StaticResource DarkScrollBar}"/>
+                        </ScrollViewer.Resources>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <Ellipse Width="12" Height="12" Fill="#E63946" Margin="0,0,6,0"/>
+                                <TextBlock Text="Attacker"  Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <Rectangle Width="12" Height="12" Fill="#2196F3" Margin="0,0,6,0"/>
+                                <TextBlock Text="Defender"  Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <Ellipse Width="12" Height="12" Fill="#FF9800" Margin="0,0,6,0"/>
+                                <TextBlock Text="Drone"     Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <Rectangle Width="12" Height="12" Fill="#9C27B0" Margin="0,0,6,0"/>
+                                <TextBlock Text="Breach"    Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="★" Foreground="#4CAF50" FontSize="12" Margin="0,0,4,0"/>
+                                <TextBlock Text="Objective"  Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <Ellipse Width="12" Height="12" Fill="#FFE032" Margin="0,0,6,0"/>
+                                <TextBlock Text="Default Cam" Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <Ellipse Width="12" Height="12" Fill="#FFE032" Stroke="Black" StrokeThickness="1" Margin="0,0,6,0"/>
+                                <TextBlock Text="Spawn" Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <Line X1="0" Y1="6" X2="14" Y2="6" Stroke="#00FF88"
+                                      StrokeThickness="2" StrokeDashArray="4,2" Margin="0,0,6,0"/>
+                                <TextBlock Text="Line of Sight" Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,2">
-                            <Rectangle Width="12" Height="12" Fill="#2196F3" Margin="0,0,6,0"/>
-                            <TextBlock Text="Defender"  Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,2">
-                            <Ellipse Width="12" Height="12" Fill="#FF9800" Margin="0,0,6,0"/>
-                            <TextBlock Text="Drone"     Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,2">
-                            <Rectangle Width="12" Height="12" Fill="#9C27B0" Margin="0,0,6,0"/>
-                            <TextBlock Text="Breach"    Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,2">
-                            <TextBlock Text="★" Foreground="#4CAF50" FontSize="12" Margin="0,0,4,0"/>
-                            <TextBlock Text="Objective"  Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,2">
-                            <Ellipse Width="12" Height="12" Fill="#FFE032" Margin="0,0,6,0"/>
-                            <TextBlock Text="Default Cam" Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,2">
-                            <Ellipse Width="12" Height="12" Fill="#FFE032" Stroke="Black" StrokeThickness="1" Margin="0,0,6,0"/>
-                            <TextBlock Text="Spawn" Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,2">
-                            <Line X1="0" Y1="6" X2="14" Y2="6" Stroke="#00FF88"
-                                  StrokeThickness="2" StrokeDashArray="4,2" Margin="0,0,6,0"/>
-                            <TextBlock Text="Line of Sight" Foreground="#8B949E" FontFamily="Consolas" FontSize="11"/>
-                        </StackPanel>
-                    </StackPanel>
                 </ScrollViewer>
+                
+                <GridSplitter Grid.Row="13" Height="3" HorizontalAlignment="Stretch"
+                              Background="#21262D" BorderBrush="#30363D" BorderThickness="0,1,0,0"
+                              Cursor="SizeNS"/>
 
                 <!-- Shortcuts -->
-                <Border DockPanel.Dock="Top" Background="#161B22"
+                <Border Grid.Row="14" Background="#161B22"
                         BorderBrush="#21262D" BorderThickness="1,1,0,1" Padding="8,6">
                     <TextBlock Text="SHORTCUTS" Style="{StaticResource SectionLabel}" Margin="0"/>
                 </Border>
 
-                <StackPanel DockPanel.Dock="Top" Margin="8,4" Background="#0D1117">
+                <StackPanel Grid.Row="15" Margin="8,4" Background="#0D1117">
                     <TextBlock Foreground="#555F6E" FontFamily="Consolas" FontSize="10"
                                Text="Ctrl+Z  Undo"/>
                     <TextBlock Foreground="#555F6E" FontFamily="Consolas" FontSize="10"
@@ -487,8 +584,8 @@
                                Text="Right-click token + Delete"/>
                 </StackPanel>
 
-                <Border Background="#0D1117"/>
-            </DockPanel>
+                <Border Grid.Row="16" Background="#0D1117"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
