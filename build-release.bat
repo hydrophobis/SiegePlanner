@@ -78,8 +78,8 @@ echo.
 
 REM Copy additional resources
 echo Copying additional resources...
-if exist "Assets\Maps" (
-    xcopy /E /I /Y "Assets\Maps" "%PUBLISH_DIR%\Assets\Maps\"
+if exist "Maps" (
+    xcopy /E /I /Y "Maps" "%PUBLISH_DIR%\Maps\"
 )
 if exist "Configs" (
     xcopy /E /I /Y "Configs" "%PUBLISH_DIR%\Configs\"
