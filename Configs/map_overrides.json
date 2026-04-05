@@ -1,0 +1,399 @@
+{
+  "Border": {
+    "Cameras": {
+      "Cam A – East Stairs": {
+        "Name": "Cam A – East Stairs",
+        "FloorIndex": 0,
+        "NormX": 0.72,
+        "NormY": 0.31,
+        "AngleDeg": 200.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.14
+      },
+      "Cam B – Armory": {
+        "Name": "Cam B – Armory",
+        "FloorIndex": 0,
+        "NormX": 0.41,
+        "NormY": 0.58,
+        "AngleDeg": 90.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "Cam C – 2F Hallway": {
+        "Name": "Cam C – 2F Hallway",
+        "FloorIndex": 1,
+        "NormX": 0.55,
+        "NormY": 0.22,
+        "AngleDeg": 270.0,
+        "FovHalfDeg": 40.0,
+        "RangeNorm": 0.13
+      },
+      "Cam D – Roof Hatch": {
+        "Name": "Cam D – Roof Hatch",
+        "FloorIndex": 1,
+        "NormX": 0.3,
+        "NormY": 0.7,
+        "AngleDeg": 135.0,
+        "FovHalfDeg": 30.0,
+        "RangeNorm": 0.1
+      }
+    },
+    "Spawns": []
+  },
+  "Bank": {
+    "Cameras": {
+      "Cam 1 – Lobby": {
+        "Name": "Cam 1 – Lobby",
+        "FloorIndex": 1,
+        "NormX": 0.0,
+        "NormY": 1.0,
+        "AngleDeg": 180.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.13
+      },
+      "Cam 2 – Vault": {
+        "Name": "Cam 2 – Vault",
+        "FloorIndex": 0,
+        "NormX": 0.0,
+        "NormY": 1.0,
+        "AngleDeg": 90.0,
+        "FovHalfDeg": 40.0,
+        "RangeNorm": 0.12
+      },
+      "Cam 3 – CEO Office": {
+        "Name": "Cam 3 – CEO Office",
+        "FloorIndex": 2,
+        "NormX": 0.0,
+        "NormY": 1.0,
+        "AngleDeg": 315.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.11
+      },
+      "Spawn Garage Ramp": {
+        "Name": "Spawn Garage Ramp",
+        "FloorIndex": 0,
+        "NormX": 0.23539867738948586,
+        "NormY": 0.6561059394341986,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "B Vault Lobby": {
+        "Name": "B Vault Lobby",
+        "FloorIndex": 0,
+        "NormX": 0.3949143886970331,
+        "NormY": 0.6408894065254099,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "Spawn Back Alley": {
+        "Name": "Spawn Back Alley",
+        "FloorIndex": 1,
+        "NormX": 0.8303035358499626,
+        "NormY": 0.6428583144777531,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "Spawn Plaza": {
+        "Name": "Spawn Plaza",
+        "FloorIndex": 1,
+        "NormX": 0.5347090429379125,
+        "NormY": 0.11615912404285725,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "1F Office Hall": {
+        "Name": "1F Office Hall",
+        "FloorIndex": 1,
+        "NormX": 0.5343812503704184,
+        "NormY": 0.6178386665646434,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "2F Lobby": {
+        "Name": "2F Lobby",
+        "FloorIndex": 2,
+        "NormX": 0.30346118951225404,
+        "NormY": 0.3942293354688193,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "2F Skylight Stairs": {
+        "Name": "2F Skylight Stairs",
+        "FloorIndex": 2,
+        "NormX": 0.635528480785583,
+        "NormY": 0.37360074046451525,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      }
+    },
+    "Spawns": [
+      {
+        "Id": "6b63a999-84e9-43ca-acb9-cf33ea79ea75",
+        "Letter": "A",
+        "Name": "Boulevard",
+        "FloorIndex": 0,
+        "NormX": 0.12217362291905573,
+        "NormY": 0.06230394154682979
+      },
+      {
+        "Id": "7144ae0a-a1c5-4a32-8254-f588c0d5f847",
+        "Letter": "C",
+        "Name": "Back Alley",
+        "FloorIndex": 0,
+        "NormX": 0.8544156430348036,
+        "NormY": 0.8558066122147624
+      },
+      {
+        "Id": "c66db116-5894-4a06-ba95-e8dd176fd875",
+        "Letter": "B",
+        "Name": "Jewelry Front",
+        "FloorIndex": 0,
+        "NormX": 0.8657579907013652,
+        "NormY": 0.08625994129280944
+      }
+    ]
+  },
+  "Clubhouse": {
+    "Cameras": {
+      "B Hallway": {
+        "Name": "B Hallway",
+        "FloorIndex": 0,
+        "NormX": 0.45328695701503596,
+        "NormY": 0.2723490020440187,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "1F Bar": {
+        "Name": "1F Bar",
+        "FloorIndex": 1,
+        "NormX": 0.47205934870216754,
+        "NormY": 0.33861256395301115,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "Spawn Graffiti": {
+        "Name": "Spawn Graffiti",
+        "FloorIndex": 1,
+        "NormX": 0.293310100892629,
+        "NormY": 0.22994588473996844,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "Spawn VIP Parking": {
+        "Name": "Spawn VIP Parking",
+        "FloorIndex": 1,
+        "NormX": 0.3903409107679177,
+        "NormY": 0.8275324598449211,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "Spawn Kennels": {
+        "Name": "Spawn Kennels",
+        "FloorIndex": 1,
+        "NormX": 0.8467158497244502,
+        "NormY": 0.898746897388434,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "2F Garage": {
+        "Name": "2F Garage",
+        "FloorIndex": 2,
+        "NormX": 0.7264826194139654,
+        "NormY": 0.8743281904557992,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "2F Bedroom Hall": {
+        "Name": "2F Bedroom Hall",
+        "FloorIndex": 2,
+        "NormX": 0.5128463607534574,
+        "NormY": 0.27102349453586083,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      }
+    },
+    "Spawns": [
+      {
+        "Id": "9ceb62d0-1d81-4faa-876d-ac3637f46356",
+        "Letter": "A",
+        "Name": "Main Entrance",
+        "FloorIndex": 0,
+        "NormX": 0.5161264192720878,
+        "NormY": 1.0
+      },
+      {
+        "Id": "8178816b-1bb3-435a-b32b-0fe723e92a75",
+        "Letter": "B",
+        "Name": "Shipping Docks",
+        "FloorIndex": 0,
+        "NormX": 0.02569579726251913,
+        "NormY": 0.5607274754073337
+      },
+      {
+        "Id": "7d4d5001-682d-494e-a017-5b1062756995",
+        "Letter": "C",
+        "Name": "Construction Site",
+        "FloorIndex": 0,
+        "NormX": 0.796628811616585,
+        "NormY": 0.018462722616265772
+      }
+    ]
+  },
+  "Oregon": {
+    "Cameras": {
+      "Spawn Junkyard": {
+        "Name": "Spawn Junkyard",
+        "FloorIndex": 1,
+        "NormX": 0.17272110896902293,
+        "NormY": 0.7053402624402243,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "Spawn Parking": {
+        "Name": "Spawn Parking",
+        "FloorIndex": 1,
+        "NormX": 0.6890381168157833,
+        "NormY": 0.7368677635641508,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "Spawn Construction Site": {
+        "Name": "Spawn Construction Site",
+        "FloorIndex": 1,
+        "NormX": 0.7386565010830695,
+        "NormY": 0.1994742842210386,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "1F Backstage": {
+        "Name": "1F Backstage",
+        "FloorIndex": 1,
+        "NormX": 0.5903354383013405,
+        "NormY": 0.3349182680942135,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "1F Lobby": {
+        "Name": "1F Lobby",
+        "FloorIndex": 1,
+        "NormX": 0.5543989874722514,
+        "NormY": 0.6057009608371619,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "1F Dining Corridor": {
+        "Name": "1F Dining Corridor",
+        "FloorIndex": 1,
+        "NormX": 0.3806016135041919,
+        "NormY": 0.6665210639043089,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      }
+    },
+    "Spawns": [
+      {
+        "Id": "e62ebcbd-3695-41c5-b136-a41441e74061",
+        "Letter": "A",
+        "Name": "Junkyard",
+        "FloorIndex": 0,
+        "NormX": 0.09109992053382483,
+        "NormY": 0.8507309901183933
+      },
+      {
+        "Id": "1e223af0-d487-4134-bacb-84c7df263470",
+        "Letter": "B",
+        "Name": "Street",
+        "FloorIndex": 0,
+        "NormX": 0.7712907479572386,
+        "NormY": 0.9872892918528222
+      },
+      {
+        "Id": "a8b545f7-3c8c-4d71-8043-09971aa50b09",
+        "Letter": "C",
+        "Name": "Construction Site",
+        "FloorIndex": 0,
+        "NormX": 0.7246322613438231,
+        "NormY": 0.21273368137404505
+      }
+    ]
+  },
+  "Chalet": {
+    "Cameras": {
+      "B Snowmobile Garage": {
+        "Name": "B Snowmobile Garage",
+        "FloorIndex": 0,
+        "NormX": 0.49313469946284544,
+        "NormY": 0.6961193347565178,
+        "AngleDeg": 90.0,
+        "FovHalfDeg": 38.0,
+        "RangeNorm": 0.14
+      },
+      "2F Bedroom Hallway": {
+        "Name": "2F Bedroom Hallway",
+        "FloorIndex": 2,
+        "NormX": 0.5593689946118559,
+        "NormY": 0.5777991528323805,
+        "AngleDeg": 90.0,
+        "FovHalfDeg": 38.0,
+        "RangeNorm": 0.14
+      },
+      "2F Library Stairs": {
+        "Name": "2F Library Stairs",
+        "FloorIndex": 2,
+        "NormX": 0.34684684381909126,
+        "NormY": 0.6618733219543506,
+        "AngleDeg": 90.0,
+        "FovHalfDeg": 38.0,
+        "RangeNorm": 0.14
+      },
+      "1/2F Fireplace Hallway": {
+        "Name": "1/2F Fireplace Hallway",
+        "FloorIndex": 2,
+        "NormX": 0.6135765057616768,
+        "NormY": 0.9561745860499428,
+        "AngleDeg": 90.0,
+        "FovHalfDeg": 38.0,
+        "RangeNorm": 0.14
+      },
+      "Spawn Frontyard": {
+        "Name": "Spawn Frontyard",
+        "FloorIndex": 2,
+        "NormX": 0.219511365131441,
+        "NormY": 0.5051432320433186,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      "Spawn Backyard": {
+        "Name": "Spawn Backyard",
+        "FloorIndex": 2,
+        "NormX": 0.9372275826628655,
+        "NormY": 0.3662047168502,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      }
+    },
+    "Spawns": []
+  }
+}

@@ -1,0 +1,205 @@
+[
+  {
+    "MapName": "Clubhouse",
+    "Cameras": [
+      {
+        "Name": "B Hallway",
+        "FloorIndex": 0,
+        "NormX": 0.45476136842099496,
+        "NormY": 0.27812542966283393,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "1F Bar",
+        "FloorIndex": 1,
+        "NormX": 0.47246212973748525,
+        "NormY": 0.343264822466691,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "Spawn Graffiti",
+        "FloorIndex": 1,
+        "NormX": 0.2930275624675082,
+        "NormY": 0.23269825504351555,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "Spawn VIP Parking",
+        "FloorIndex": 1,
+        "NormX": 0.3904840225867392,
+        "NormY": 0.8273478422117045,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "Spawn Kennels",
+        "FloorIndex": 1,
+        "NormX": 0.8467582492740203,
+        "NormY": 0.8983772382178433,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "2F Garage",
+        "FloorIndex": 2,
+        "NormX": 0.7250786089851242,
+        "NormY": 0.8707125305349126,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "2F Bedroom Hallway",
+        "FloorIndex": 2,
+        "NormX": 0.5125343264255879,
+        "NormY": 0.2714026299548177,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      }
+    ]
+  },
+  {
+    "MapName": "Consulate",
+    "Cameras": []
+  },
+  {
+    "MapName": "Kafe Dostoyevsky",
+    "Cameras": []
+  },
+  {
+    "MapName": "Oregon",
+    "Cameras": [
+      {
+        "Name": "1F Dining Hall Corridor",
+        "FloorIndex": 1,
+        "NormX": 0.3820461748300787,
+        "NormY": 0.6652318607222311,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "1F Lobby",
+        "FloorIndex": 1,
+        "NormX": 0.5521294899667079,
+        "NormY": 0.6119991416764196,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "1F Back Stage",
+        "FloorIndex": 1,
+        "NormX": 0.5855963321699823,
+        "NormY": 0.33101182954406755,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "2F Armory Hall",
+        "FloorIndex": 2,
+        "NormX": 0.5947798423055266,
+        "NormY": 0.5602216143109515,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "Spawn Junkyard",
+        "FloorIndex": 1,
+        "NormX": 0.172608579154199,
+        "NormY": 0.7064058732737432,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "Spawn Parking",
+        "FloorIndex": 1,
+        "NormX": 0.689047497020199,
+        "NormY": 0.7372430294233339,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "Spawn Construction Site",
+        "FloorIndex": 1,
+        "NormX": 0.7362002253004621,
+        "NormY": 0.19946109460532235,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      }
+    ]
+  },
+  {
+    "MapName": "Chalet",
+    "Cameras": [
+      {
+        "Name": "B Snowmobile Garage",
+        "FloorIndex": 0,
+        "NormX": 0.49122706444595304,
+        "NormY": 0.6929972933896191,
+        "AngleDeg": 90.0,
+        "FovHalfDeg": 38.0,
+        "RangeNorm": 0.14
+      },
+      {
+        "Name": "2F Bedroom Hallway",
+        "FloorIndex": 2,
+        "NormX": 0.5568529146261759,
+        "NormY": 0.6591141211432178,
+        "AngleDeg": 90.0,
+        "FovHalfDeg": 38.0,
+        "RangeNorm": 0.14
+      },
+      {
+        "Name": "2F Library Stairs",
+        "FloorIndex": 2,
+        "NormX": 0.34566988508642393,
+        "NormY": 0.6693628173324653,
+        "AngleDeg": 90.0,
+        "FovHalfDeg": 38.0,
+        "RangeNorm": 0.14
+      },
+      {
+        "Name": "1/2F Fireplace Hallway",
+        "FloorIndex": 2,
+        "NormX": 0.6155546396881285,
+        "NormY": 0.9595383086407518,
+        "AngleDeg": 90.0,
+        "FovHalfDeg": 38.0,
+        "RangeNorm": 0.14
+      },
+      {
+        "Name": "Spawn Frontyard",
+        "FloorIndex": 1,
+        "NormX": 0.21981988216220494,
+        "NormY": 0.5024914039549704,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      },
+      {
+        "Name": "Spawn Backyard",
+        "FloorIndex": 1,
+        "NormX": 0.9386843316920749,
+        "NormY": 0.3639668018417255,
+        "AngleDeg": 0.0,
+        "FovHalfDeg": 35.0,
+        "RangeNorm": 0.12
+      }
+    ]
+  }
+]

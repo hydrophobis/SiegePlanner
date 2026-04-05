@@ -1,0 +1,1 @@
+copy Configs\* %localappdata%\R6Planner
