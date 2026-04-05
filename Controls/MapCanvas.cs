@@ -213,8 +213,8 @@ namespace R6Planner.Controls
 
         private void SetZoom(double zoom, Point anchor)
         {
-            const double minZoom = 0.25;
-            const double maxZoom = 5.0;
+            const double minZoom = 0.1;
+            const double maxZoom = 10.0;
 
             var newZoom = Math.Clamp(zoom, minZoom, maxZoom);
             if (Math.Abs(newZoom - _zoom) < 1e-6) return;
@@ -559,19 +559,6 @@ namespace R6Planner.Controls
 
             shape.Tag = tok.Id;
 
-            var label = new TextBlock
-            {
-                Text       = string.IsNullOrWhiteSpace(tok.Label) ? GetTypeGlyph(tok) : tok.Label,
-                Foreground = Brushes.White,
-                FontSize   = 9 * scale,
-                FontFamily = new FontFamily("Consolas"),
-                FontWeight = FontWeights.Bold,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment   = VerticalAlignment.Center,
-                IsHitTestVisible    = false,
-                Opacity = opacity
-            };
-
             var tooltip = new ToolTip
             {
                 Content = tooltipText
@@ -592,7 +579,78 @@ namespace R6Planner.Controls
 
             var container = new Grid { Tag = tok.Id, Opacity = opacity, ToolTip = tooltip };
             container.Children.Add(shape);
-            container.Children.Add(label);
+
+            // Add operator icon or label
+            if (!string.IsNullOrEmpty(tok.OperatorIcon) && 
+                (tok.Type == TokenType.Attacker || tok.Type == TokenType.Defender))
+            {
+                var iconPath = System.IO.Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    "Operators", $"{tok.OperatorIcon}.png");
+                
+                if (System.IO.File.Exists(iconPath))
+                {
+                    var iconImage = new Image
+                    {
+                        Source = new BitmapImage(new Uri(iconPath, UriKind.Absolute)),
+                        Width = 20 * scale,
+                        Height = 20 * scale,
+                        Stretch = Stretch.Uniform,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        IsHitTestVisible = false,
+                        Opacity = opacity
+                    };
+                    
+                    // Add a subtle background to make icons more visible
+                    var iconBg = new Border
+                    {
+                        Width = 20 * scale,
+                        Height = 20 * scale,
+                        Background = new SolidColorBrush(Color.FromArgb(180, 0, 0, 0)),
+                        CornerRadius = new CornerRadius(2),
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        IsHitTestVisible = false,
+                        Child = iconImage
+                    };
+                    container.Children.Add(iconBg);
+                }
+                else
+                {
+                    // Fallback to label if icon not found
+                    var label = new TextBlock
+                    {
+                        Text = string.IsNullOrWhiteSpace(tok.Label) ? GetTypeGlyph(tok) : tok.Label,
+                        Foreground = Brushes.White,
+                        FontSize = 9 * scale,
+                        FontFamily = new FontFamily("Consolas"),
+                        FontWeight = FontWeights.Bold,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        IsHitTestVisible = false,
+                        Opacity = opacity
+                    };
+                    container.Children.Add(label);
+                }
+            }
+            else
+            {
+                var label = new TextBlock
+                {
+                    Text = string.IsNullOrWhiteSpace(tok.Label) ? GetTypeGlyph(tok) : tok.Label,
+                    Foreground = Brushes.White,
+                    FontSize = 9 * scale,
+                    FontFamily = new FontFamily("Consolas"),
+                    FontWeight = FontWeights.Bold,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    IsHitTestVisible = false,
+                    Opacity = opacity
+                };
+                container.Children.Add(label);
+            }
+
             container.Tag = tok.Id;
 
             if (isCurrentFloor)
@@ -612,6 +670,7 @@ namespace R6Planner.Controls
             {
                 return tok.GadgetType.Value switch
                 {
+                    // Defender gadgets
                     Models.GadgetType.MuteJammer => "M",
                     Models.GadgetType.KapkanTrap => "K",
                     Models.GadgetType.BanditBattery => "⚡",
@@ -619,14 +678,89 @@ namespace R6Planner.Controls
                     Models.GadgetType.JagerADS => "J",
                     Models.GadgetType.WamaiMagnet => "W",
                     Models.GadgetType.ValkyrieCam => "👁",
-                    Models.GadgetType.MaestroCamera => "📹",
+                    Models.GadgetType.MaestroEvil => "📹",
+                    Models.GadgetType.SmokeBomb => "💨",
+                    Models.GadgetType.CastleDoor => "🚪",
+                    Models.GadgetType.PulseSensor => "💓",
+                    Models.GadgetType.DocStim => "+",
+                    Models.GadgetType.RookArmor => "🛡",
+                    Models.GadgetType.FrostTrap => "❄",
+                    Models.GadgetType.EchoYokai => "E",
+                    Models.GadgetType.CaveiraInterrogation => "?",
+                    Models.GadgetType.MiraWindow => "⬜",
+                    Models.GadgetType.LesionMine => "L",
+                    Models.GadgetType.ElaGrzmot => "⚡",
+                    Models.GadgetType.VigilERC => "V",
+                    Models.GadgetType.AlibiPrisma => "A",
+                    Models.GadgetType.ClashShield => "🛡",
+                    Models.GadgetType.KaidRtila => "⚡",
+                    Models.GadgetType.MozzieHack => "🔧",
+                    Models.GadgetType.WardenGlasses => "👓",
+                    Models.GadgetType.GoyoVolcan => "🔥",
+                    Models.GadgetType.AruniGate => "⚡",
+                    Models.GadgetType.ThunderbirdKona => "+",
+                    Models.GadgetType.TachankaShumikha => "🔥",
+                    Models.GadgetType.AzamiKiba => "▲",
+                    Models.GadgetType.SolisSpec => "👓",
+                    Models.GadgetType.FenrirMine => "F",
+                    Models.GadgetType.TubaraoZoto => "⬜",
+                    Models.GadgetType.ThornMine => "🌹",
+                    Models.GadgetType.MelusiBanshee => "M",
+                    Models.GadgetType.OryxDash => "O",
+                    Models.GadgetType.SkoposShell => "📷",
+                    Models.GadgetType.DenariConnector => "⚡",
+                    
+                    // Attacker gadgets
                     Models.GadgetType.ThermiteCharge => "T",
-                    Models.GadgetType.HibanaLauncher => "H",
-                    Models.GadgetType.AceBreacher => "A",
+                    Models.GadgetType.HibanaXKairos => "H",
+                    Models.GadgetType.AceSelma => "A",
+                    Models.GadgetType.AshBreachRound => "💥",
+                    Models.GadgetType.ZofiaConcussion => "Z",
+                    Models.GadgetType.BuckSkeleton => "B",
+                    Models.GadgetType.SledgeHammer => "🔨",
+                    Models.GadgetType.ThatcherEMP => "⚡",
+                    Models.GadgetType.TwitchDrone => "🔧",
+                    Models.GadgetType.MontagneShield => "🛡",
+                    Models.GadgetType.GlazScope => "🔭",
+                    Models.GadgetType.FuzeCluster => "💣",
+                    Models.GadgetType.BlitzFlash => "⚡",
+                    Models.GadgetType.IQScanner => "📡",
+                    Models.GadgetType.CapitaoArrow => "➤",
+                    Models.GadgetType.BlackbeardShield => "🛡",
+                    Models.GadgetType.JackalFootprint => "👣",
+                    Models.GadgetType.YingCandela => "💡",
+                    Models.GadgetType.ZofiaKS79 => "Z",
+                    Models.GadgetType.DokkaebiLogic => "📱",
+                    Models.GadgetType.LionEE => "🔊",
+                    Models.GadgetType.FinkaSurge => "+",
+                    Models.GadgetType.MaverickTorch => "🔥",
+                    Models.GadgetType.NomadAirjab => "💨",
+                    Models.GadgetType.KaliLance => "➤",
+                    Models.GadgetType.AmauruSupressa => "A",
+                    Models.GadgetType.IanaGemini => "I",
+                    Models.GadgetType.ZeroCamera => "📷",
+                    Models.GadgetType.FloresRCE => "🔧",
+                    Models.GadgetType.OsaShield => "🛡",
+                    Models.GadgetType.SensOrb => "👁",
+                    Models.GadgetType.GrimSkyline => "G",
+                    Models.GadgetType.BravaKludge => "🔧",
+                    Models.GadgetType.RamBU => "R",
+                    Models.GadgetType.DeimosDeathmark => "D",
+                    Models.GadgetType.GridlockTrax => "G",
+                    Models.GadgetType.NokkHEL => "N",
+                    Models.GadgetType.RauoraBulletproofPanel => "🛡",
+                    Models.GadgetType.SnakeSoliton => "📡",
+                    
+                    // Universal
                     Models.GadgetType.Claymore => "C",
                     Models.GadgetType.BarbedWire => "⚠",
                     Models.GadgetType.DeployableShield => "🛡",
                     Models.GadgetType.BulletproofCamera => "📷",
+                    Models.GadgetType.ImpactGrenade => "💥",
+                    Models.GadgetType.NitroCell => "💣",
+                    Models.GadgetType.ProximityAlarm => "🔔",
+                    Models.GadgetType.ObservationBlocker => "⬛",
+                    
                     _ => "G"
                 };
             }
@@ -648,6 +782,7 @@ namespace R6Planner.Controls
             
             return gadget switch
             {
+                // Defender gadgets - distinctive shapes
                 Models.GadgetType.MuteJammer => MakeHexagon(size, fill, tooltip),
                 Models.GadgetType.KapkanTrap => MakeTriangle(size, fill, tooltip),
                 Models.GadgetType.BanditBattery => MakeSmallRect(size, fill, tooltip),
@@ -655,14 +790,89 @@ namespace R6Planner.Controls
                 Models.GadgetType.JagerADS => MakePentagon(size, fill, tooltip),
                 Models.GadgetType.WamaiMagnet => MakePentagon(size, fill, tooltip),
                 Models.GadgetType.ValkyrieCam => MakeSmallCircle(size * 0.8, fill, tooltip),
-                Models.GadgetType.MaestroCamera => MakeSmallCircle(size * 0.9, fill, tooltip),
+                Models.GadgetType.MaestroEvil => MakeSmallCircle(size * 0.9, fill, tooltip),
+                Models.GadgetType.SmokeBomb => MakeHexagon(size * 0.9, fill, tooltip),
+                Models.GadgetType.CastleDoor => MakeSmallRect(size * 1.3, fill, tooltip),
+                Models.GadgetType.PulseSensor => MakeSmallCircle(size * 0.85, fill, tooltip),
+                Models.GadgetType.DocStim => MakeCross(size, fill, tooltip),
+                Models.GadgetType.RookArmor => MakeSquare(size, fill, tok),
+                Models.GadgetType.FrostTrap => MakeTriangle(size, fill, tooltip),
+                Models.GadgetType.EchoYokai => MakeDiamondShape(size, fill, tooltip),
+                Models.GadgetType.CaveiraInterrogation => MakeOctagon(size * 0.9, fill, tooltip),
+                Models.GadgetType.MiraWindow => MakeSmallRect(size * 1.4, fill, tooltip),
+                Models.GadgetType.LesionMine => MakeHexagon(size * 0.85, fill, tooltip),
+                Models.GadgetType.ElaGrzmot => MakeDiamondShape(size * 0.9, fill, tooltip),
+                Models.GadgetType.VigilERC => MakeOctagon(size, fill, tooltip),
+                Models.GadgetType.AlibiPrisma => MakePentagon(size * 0.9, fill, tooltip),
+                Models.GadgetType.ClashShield => MakeSmallRect(size * 1.2, fill, tooltip),
+                Models.GadgetType.KaidRtila => MakeOctagon(size * 0.95, fill, tooltip),
+                Models.GadgetType.MozzieHack => MakeDiamondShape(size * 0.85, fill, tooltip),
+                Models.GadgetType.WardenGlasses => MakeRoundedRect(size * 0.9, fill, tooltip),
+                Models.GadgetType.GoyoVolcan => MakeSmallCircle(size * 0.85, fill, tooltip),
+                Models.GadgetType.AruniGate => MakeSmallRect(size * 1.5, fill, tooltip),
+                Models.GadgetType.ThunderbirdKona => MakeCross(size * 0.9, fill, tooltip),
+                Models.GadgetType.TachankaShumikha => MakeHexagon(size, fill, tooltip),
+                Models.GadgetType.AzamiKiba => MakeTriangle(size * 0.95, fill, tooltip),
+                Models.GadgetType.SolisSpec => MakeOctagon(size * 0.85, fill, tooltip),
+                Models.GadgetType.FenrirMine => MakeHexagon(size * 0.9, fill, tooltip),
+                Models.GadgetType.TubaraoZoto => MakeSmallRect(size * 1.35, fill, tooltip),
+                Models.GadgetType.ThornMine => MakeTriangle(size * 0.9, fill, tooltip),
+                Models.GadgetType.MelusiBanshee => MakePentagon(size * 0.9, fill, tooltip),
+                Models.GadgetType.OryxDash => MakeDiamondShape(size * 0.9, fill, tooltip),
+                Models.GadgetType.SkoposShell => MakeSmallCircle(size * 0.85, fill, tooltip),
+                Models.GadgetType.DenariConnector => MakeSmallRect(size * 1.2, fill, tooltip),
+                
+                // Attacker gadgets - distinctive shapes
                 Models.GadgetType.ThermiteCharge => MakeRoundedRect(size, fill, tooltip),
-                Models.GadgetType.HibanaLauncher => MakeDiamondShape(size, fill, tooltip),
-                Models.GadgetType.AceBreacher => MakeRoundedRect(size, fill, tooltip),
+                Models.GadgetType.HibanaXKairos => MakeDiamondShape(size, fill, tooltip),
+                Models.GadgetType.AceSelma => MakeRoundedRect(size * 0.95, fill, tooltip),
+                Models.GadgetType.AshBreachRound => MakeSmallCircle(size * 0.85, fill, tooltip),
+                Models.GadgetType.ZofiaConcussion => MakeSmallCircle(size * 0.8, fill, tooltip),
+                Models.GadgetType.BuckSkeleton => MakeSquare(size * 0.9, fill, tok),
+                Models.GadgetType.SledgeHammer => MakeSquare(size, fill, tok),
+                Models.GadgetType.ThatcherEMP => MakeHexagon(size * 0.9, fill, tooltip),
+                Models.GadgetType.TwitchDrone => MakeDiamondShape(size * 0.85, fill, tooltip),
+                Models.GadgetType.MontagneShield => MakeSmallRect(size * 1.3, fill, tooltip),
+                Models.GadgetType.GlazScope => MakeSmallCircle(size * 0.75, fill, tooltip),
+                Models.GadgetType.FuzeCluster => MakeHexagon(size, fill, tooltip),
+                Models.GadgetType.BlitzFlash => MakeSmallCircle(size * 0.9, fill, tooltip),
+                Models.GadgetType.IQScanner => MakeRoundedRect(size * 0.85, fill, tooltip),
+                Models.GadgetType.CapitaoArrow => MakeTriangle(size * 0.9, fill, tooltip),
+                Models.GadgetType.BlackbeardShield => MakeSmallRect(size * 1.2, fill, tooltip),
+                Models.GadgetType.JackalFootprint => MakeOctagon(size * 0.85, fill, tooltip),
+                Models.GadgetType.YingCandela => MakeSmallCircle(size * 0.85, fill, tooltip),
+                Models.GadgetType.ZofiaKS79 => MakeSmallCircle(size * 0.8, fill, tooltip),
+                Models.GadgetType.DokkaebiLogic => MakeRoundedRect(size * 0.9, fill, tooltip),
+                Models.GadgetType.LionEE => MakeDiamondShape(size * 0.9, fill, tooltip),
+                Models.GadgetType.FinkaSurge => MakeCross(size * 0.85, fill, tooltip),
+                Models.GadgetType.MaverickTorch => MakeSmallCircle(size * 0.75, fill, tooltip),
+                Models.GadgetType.NomadAirjab => MakeSmallCircle(size * 0.9, fill, tooltip),
+                Models.GadgetType.KaliLance => MakeTriangle(size, fill, tooltip),
+                Models.GadgetType.AmauruSupressa => MakeSquare(size * 0.9, fill, tok),
+                Models.GadgetType.IanaGemini => MakePentagon(size * 0.9, fill, tooltip),
+                Models.GadgetType.ZeroCamera => MakeSmallCircle(size * 0.8, fill, tooltip),
+                Models.GadgetType.FloresRCE => MakeDiamondShape(size * 0.85, fill, tooltip),
+                Models.GadgetType.OsaShield => MakeSmallRect(size * 1.3, fill, tooltip),
+                Models.GadgetType.SensOrb => MakeSmallCircle(size * 0.9, fill, tooltip),
+                Models.GadgetType.GrimSkyline => MakeHexagon(size * 0.85, fill, tooltip),
+                Models.GadgetType.BravaKludge => MakeDiamondShape(size * 0.8, fill, tooltip),
+                Models.GadgetType.RamBU => MakeSquare(size, fill, tok),
+                Models.GadgetType.DeimosDeathmark => MakeOctagon(size * 0.9, fill, tooltip),
+                Models.GadgetType.GridlockTrax => MakeHexagon(size * 0.9, fill, tooltip),
+                Models.GadgetType.NokkHEL => MakeDiamondShape(size * 0.85, fill, tooltip),
+                Models.GadgetType.RauoraBulletproofPanel => MakeSmallRect(size * 1.4, fill, tooltip),
+                Models.GadgetType.SnakeSoliton => MakeOctagon(size * 0.9, fill, tooltip),
+                
+                // Universal
                 Models.GadgetType.Claymore => MakeTriangle(size, fill, tooltip),
                 Models.GadgetType.BarbedWire => MakeHexagon(size, fill, tooltip),
                 Models.GadgetType.DeployableShield => MakeSmallRect(size * 1.2, fill, tooltip),
                 Models.GadgetType.BulletproofCamera => MakeSmallCircle(size * 0.8, fill, tooltip),
+                Models.GadgetType.ImpactGrenade => MakeSmallCircle(size * 0.85, fill, tooltip),
+                Models.GadgetType.NitroCell => MakeRoundedRect(size * 0.9, fill, tooltip),
+                Models.GadgetType.ProximityAlarm => MakeSmallCircle(size * 0.75, fill, tooltip),
+                Models.GadgetType.ObservationBlocker => MakeHexagon(size * 0.9, fill, tooltip),
+                
                 _ => MakeHexagon(size, fill, tooltip)
             };
         }
@@ -818,6 +1028,37 @@ namespace R6Planner.Controls
                     fig.Segments.Add(new LineSegment(new Point(x, y), true));
             }
             geo.Figures.Add(fig);
+            return new System.Windows.Shapes.Path
+            {
+                Data = geo, Fill = fill,
+                Stroke = Brushes.White, StrokeThickness = 1.5,
+                ToolTip = tooltip
+            };
+        }
+
+        private FrameworkElement MakeCross(double size, Brush fill, string tooltip)
+        {
+            var geo = new PathGeometry();
+            double thickness = size * 0.3;
+            double halfSize = size / 2;
+            double halfThick = thickness / 2;
+            
+            // Vertical bar
+            var fig1 = new PathFigure { IsClosed = true };
+            fig1.StartPoint = new Point(halfSize - halfThick, 0);
+            fig1.Segments.Add(new LineSegment(new Point(halfSize + halfThick, 0), true));
+            fig1.Segments.Add(new LineSegment(new Point(halfSize + halfThick, size), true));
+            fig1.Segments.Add(new LineSegment(new Point(halfSize - halfThick, size), true));
+            geo.Figures.Add(fig1);
+            
+            // Horizontal bar
+            var fig2 = new PathFigure { IsClosed = true };
+            fig2.StartPoint = new Point(0, halfSize - halfThick);
+            fig2.Segments.Add(new LineSegment(new Point(size, halfSize - halfThick), true));
+            fig2.Segments.Add(new LineSegment(new Point(size, halfSize + halfThick), true));
+            fig2.Segments.Add(new LineSegment(new Point(0, halfSize + halfThick), true));
+            geo.Figures.Add(fig2);
+            
             return new System.Windows.Shapes.Path
             {
                 Data = geo, Fill = fill,
@@ -1432,14 +1673,37 @@ namespace R6Planner.Controls
             var id = el.Tag?.ToString();
             if (id == null) return;
 
+            var token = ViewModel?.Plan.Tokens.FirstOrDefault(t => t.Id == id);
+            if (token == null) return;
+
             var menu = new ContextMenu();
-            var del  = new MenuItem { Header = "🗑 Delete" };
+            
+            // Add "Change Icon" option for Attacker/Defender tokens
+            if (token.Type == TokenType.Attacker || token.Type == TokenType.Defender)
+            {
+                var changeIcon = new MenuItem { Header = "🎭 Change Icon" };
+                changeIcon.Click += (_, _) =>
+                {
+                    var dlg = new Views.OperatorIconDialog(token.OperatorIcon) 
+                    { 
+                        Owner = Window.GetWindow(this) 
+                    };
+                    
+                    if (dlg.ShowDialog() == true)
+                    {
+                        ViewModel?.PushUndo();
+                        token.OperatorIcon = dlg.SelectedOperatorIcon;
+                        ViewModel?.RefreshCanvas();
+                    }
+                };
+                menu.Items.Add(changeIcon);
+            }
+            
+            var del = new MenuItem { Header = "🗑 Delete" };
             del.Click += (_, _) => ViewModel?.DeleteToken(id);
             menu.Items.Add(del);
+            
             el.ContextMenu = menu;
-            menu.PlacementTarget = el;
-            menu.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
-            menu.IsOpen = true;
             menu.PlacementTarget = el;
             menu.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
             menu.IsOpen = true;

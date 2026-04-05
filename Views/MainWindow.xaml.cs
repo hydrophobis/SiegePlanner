@@ -395,40 +395,17 @@ namespace R6Planner.Views
 
         private void GadgetDisplay_Click(object sender, MouseButtonEventArgs e)
         {
-            var menu = new ContextMenu
+            var dialog = new GadgetPickerDialog(_vm.ActiveGadget)
             {
-                Background = new SolidColorBrush(Color.FromRgb(28, 34, 48)),
-                BorderBrush = new SolidColorBrush(Color.FromRgb(48, 54, 61)),
-                Foreground = new SolidColorBrush(Color.FromRgb(201, 209, 217)),
-                FontFamily = new FontFamily("Consolas"),
-                FontSize = 11
+                Owner = this
             };
-
-            var gadgets = Enum.GetValues(typeof(Models.GadgetType)).Cast<Models.GadgetType>();
-            foreach (var gadget in gadgets)
+            
+            if (dialog.ShowDialog() == true && dialog.SelectedGadget.HasValue)
             {
-                var item = new MenuItem
-                {
-                    Header = gadget.ToString(),
-                    IsChecked = gadget == _vm.ActiveGadget,
-                    Background = new SolidColorBrush(Color.FromRgb(28, 34, 48)),
-                    Foreground = new SolidColorBrush(Color.FromRgb(201, 209, 217)),
-                    FontFamily = new FontFamily("Consolas")
-                };
-                
-                var currentGadget = gadget;
-                item.Click += (_, _) =>
-                {
-                    _vm.ActiveGadget = currentGadget;
-                    SetStatus($"Gadget: {currentGadget}");
-                };
-                
-                menu.Items.Add(item);
+                _vm.ActiveGadget = dialog.SelectedGadget.Value;
+                SetStatus($"Gadget: {dialog.SelectedGadget.Value}");
             }
-
-            menu.PlacementTarget = GadgetDisplay;
-            menu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
-            menu.IsOpen = true;
+            
             e.Handled = true;
         }
     }

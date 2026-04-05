@@ -66,6 +66,9 @@ if exist "Maps" (
 if exist "Configs" (
     xcopy /E /I /Y "Configs" "%PUBLISH_DIR%\Configs\"
 )
+if exist "Operators" (
+    xcopy /E /I /Y "Operators" "%PUBLISH_DIR%\Operators\"
+)
 echo.
 
 REM Create README for distribution

@@ -39,11 +39,38 @@ namespace R6Planner.Models
     }
 
     public enum TokenType { Attacker, Defender, Drone, Breach, Objective, Gadget }
+    
+    public enum GadgetCategory { Defender, Attacker, Universal }
+    
     public enum GadgetType { 
+        // Defender gadgets
         MuteJammer, KapkanTrap, BanditBattery, KaidClaw, 
-        JagerADS, WamaiMagnet, ValkyrieCam, MaestroCamera,
-        ThermiteCharge, HibanaLauncher, AceBreacher, 
-        Claymore, BarbedWire, DeployableShield, BulletproofCamera
+        JagerADS, WamaiMagnet, ValkyrieCam, MaestroEvil,
+        SmokeBomb, CastleDoor, PulseSensor, DocStim,
+        RookArmor, FrostTrap, EchoYokai, CaveiraInterrogation,
+        MiraWindow, LesionMine, ElaGrzmot, VigilERC,
+        AlibiPrisma, ClashShield, KaidRtila,
+        MozzieHack, WardenGlasses, GoyoVolcan,
+        AruniGate, ThunderbirdKona, TachankaShumikha, AzamiKiba,
+        SolisSpec, FenrirMine, TubaraoZoto, ThornMine,
+        MelusiBanshee, OryxDash, SkoposShell, DenariConnector,
+        
+        // Attacker gadgets
+        ThermiteCharge, HibanaXKairos, 
+        AshBreachRound, ZofiaConcussion, BuckSkeleton, SledgeHammer,
+        ThatcherEMP, TwitchDrone, MontagneShield, GlazScope,
+        FuzeCluster, BlitzFlash, IQScanner, CapitaoArrow,
+        BlackbeardShield, JackalFootprint, YingCandela,
+        ZofiaKS79, DokkaebiLogic, LionEE, FinkaSurge,
+        MaverickTorch, NomadAirjab, KaliLance, AmauruSupressa,
+        IanaGemini, AceSelma, ZeroCamera, FloresRCE,
+        OsaShield, SensOrb, GrimSkyline, BravaKludge,
+        RamBU, DeimosDeathmark, GridlockTrax, NokkHEL,
+        RauoraBulletproofPanel, SnakeSoliton,
+        
+        // Universal
+        Claymore, BarbedWire, DeployableShield, BulletproofCamera,
+        ImpactGrenade, NitroCell, ProximityAlarm, ObservationBlocker
     }
     public enum AnnotationType { Line, Arrow, FreehandLine, Rectangle, Text }
 
@@ -54,6 +81,7 @@ namespace R6Planner.Models
         public GadgetType? GadgetType { get; set; }
         public string Label { get; set; } = "";
         public string OperatorName { get; set; } = "";
+        public string? OperatorIcon { get; set; }
         public int FloorIndex { get; set; }
         public double NormX { get; set; }
         public double NormY { get; set; }
