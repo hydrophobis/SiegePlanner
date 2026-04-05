@@ -1,10 +1,11 @@
 # R6 Planner
 
 A planning tool for Rainbow Six Siege. Draw strategies, mark gadgets, and plan your rounds.
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/cb280b07-0ea2-4647-bf2d-e17e0127dafb" />
 
 ## Features
 
-- Floor support (Bank, Border, Clubhouse, Consulate, Kafe, Oregon, Chalet)
+- Floor support (Bank, Clubhouse, Oregon, Chalet)
 - Place attacker/defender tokens, drones, breach points, and objectives
 - 15+ gadget types (Mute jammers, Kapkan traps, Bandit batteries, etc.)
 - Draw lines of sight, arrows, rectangles, and freehand annotations
