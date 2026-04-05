@@ -7,7 +7,7 @@ A planning tool for Rainbow Six Siege. Draw strategies, mark gadgets, and plan y
 
 - Floor support (Bank, Clubhouse, Oregon, Chalet)
 - Place attacker/defender tokens, drones, breach points, and objectives
-- 15+ gadget types (Mute jammers, Kapkan traps, Bandit batteries, etc.)
+- 60+ gadget types (Mute jammers, Kapkan traps, Bandit batteries, etc.)
 - Draw lines of sight, arrows, rectangles, and freehand annotations
 - Camera and spawn point editing
 - Save/load plans as .r6plan files
